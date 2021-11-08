@@ -4,9 +4,11 @@
 </head>
 <body>
   <nav>
+    <a href="/explore">Explore</a>
     <a href="/explorers">Explorers</a>
     <a href="/explorations">Explorations</a>
     <a href="/starfleets">StarFleets</a>
+    <a href="/explorers/<%= user?.explorer._id %>">My Profile</a>
     <% if (user) { %>
       <a href="/auth/logout">
         <button type="submit">Logout</button>

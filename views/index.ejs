@@ -3,7 +3,7 @@
 
 
 <main>
-  <h1>Greetings, <%= user ? user.explorer.name : "Future Space Explorer" %></h1>
+  <h1>Greetings, <%= user ? user.explorer?.name : "Future Space Explorer" %></h1>
   <% if (user?.explorer.avatar) { %>
     <div>
       <img 
