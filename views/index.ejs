@@ -7,8 +7,8 @@
 <script type='text/javascript' src='https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js' charset='utf-8'></script>
 
 <main>
-  <h1>hello, <%= user ? user.explorer.name : "friend" %></h1>
-  <% if (user?.explorer.avatar) { %>
+  <h1>hello, <%= user ? user.explorer?.name : "friend" %></h1>
+  <% if (user?.explorer?.avatar) { %>
     <div>
       <img 
         src="<%= user.explorer.avatar %>" 

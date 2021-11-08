@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema(
   {
     email: String,
     googleId: String,
-    profile: {type: mongoose.Schema.Types.ObjectId, ref: "Explorer"}
+    explorer: {type: mongoose.Schema.Types.ObjectId, ref: "Explorer"}
   },
   {
     timestamps: true,
