@@ -3,9 +3,9 @@ import mongoose from 'mongoose'
 const starfleetSchema = new mongoose.Schema({
   name: String,
   logo: String,
-  commander: {ObjectId: "Explorer"},
-  explorations: [{ObjectId: "Exploration"}],
-  crew: [{ObjectId: "Explorer"}]
+  commander: {type: Schema.Types.ObjectId, ref: "Explorer"},
+  explorations: [{type: Schema.Types.ObjectId, ref: "Exploration"}],
+  crew: [{type: Schema.Types.ObjectId, ref: "Explorer"}]
 }, {
   timestamps: true
 })

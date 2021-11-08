@@ -1,10 +1,17 @@
 import mongoose from 'mongoose'
 
+const updateSchema = new mongoose.schema({
+  author: {type: Schema.Types.ObjectId, ref: "Explorer"},
+  content: {type: String, required: true}
+})
+
 const observationSchema = new mongoose.Schema({
   title: String,
-  author: {ObjectId: "Explorer"},
+  author: {type: Schema.Types.ObjectId, ref: "Explorer"},
   content: {type: String, required: true},
-  updates: [{ObjectId: "Update"}]
+  updates: {
+    type: [updateSchema]
+  }
 }, {
   timestamps: true
 })
