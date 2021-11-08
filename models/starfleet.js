@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+const Schema = mongoose.Schema
 
 const starfleetSchema = new mongoose.Schema({
   name: String,

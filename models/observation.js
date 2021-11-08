@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+const Schema = mongoose.Schema
 
 const updateSchema = new mongoose.schema({
   author: {type: Schema.Types.ObjectId, ref: "Explorer"},

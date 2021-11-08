@@ -1,7 +1,7 @@
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 import { User } from '../models/user.js'
-import { Profile } from '../models/profile.js'
+import { Explorer } from '../models/explorer.js'
 
 passport.use(
   new GoogleStrategy(
@@ -10,29 +10,29 @@ passport.use(
       clientSecret: process.env.GOOGLE_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK,
     },
-    function (accessToken, refreshToken, profile, done) {
-      User.findOne({ googleId: profile.id }, function (err, user) {
+    function (accessToken, refreshToken, explorer, done) {
+      User.findOne({ googleId: explorer.id }, function (err, user) {
         if (err) return done(err)
         if (user) {
           return done(null, user)
         } else {
-          const newProfile = new Profile({
-            name: profile.displayName,
-            avatar: profile.photos[0].value,
+          const newExplorer = new Explorer({
+            name: explorer.displayName,
+            avatar: explorer.photos[0].value,
           })
           const newUser = new User({
-            email: profile.emails[0].value,
-            googleId: profile.id,
-            profile: newProfile._id
+            email: explorer.emails[0].value,
+            googleId: explorer.id,
+            explorer: newExplorer._id
           })
-          newProfile.save(function (err) {
+          newExplorer.save(function (err) {
             if (err) return done(err)
           })
           newUser.save(function (err) {
             if (err) {
               // Something went wrong while making a user - delete the profile
               // we just created to prevent orphan profiles.
-              Profile.findByIdAndDelete(newProfile._id)
+              Explorer.findByIdAndDelete(newExplorer._id)
               return done(err)
             }
             return done(null, newUser)
@@ -49,7 +49,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
   User.findById(id)
-  .populate('profile', 'name avatar')
+  .populate('explorer', 'name avatar')
   .exec(function(err, user) {
     done(err, user)
   })
