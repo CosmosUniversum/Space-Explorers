@@ -1,4 +1,4 @@
-import { Explorer } from "../models/explorer"
+import { Explorer } from "../models/explorer.js"
 import { Exploration } from "../models/exploration.js"
 
 function index(req, res) {

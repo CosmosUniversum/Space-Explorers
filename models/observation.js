@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const updateSchema = new mongoose.schema({
+const updateSchema = new Schema({
   author: {type: Schema.Types.ObjectId, ref: "Explorer"},
   content: {type: String, required: true}
 })

@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
-const explorationSchema = new mongoose.Schema({
+const explorationSchema = new Schema({
   name: String,
   coordinates: Number,
   visitedBy: [{type : Schema.Types.ObjectId, ref: "Explorer"}, {type: Schema.Types.ObjectId, ref: "Starfleet"}],
