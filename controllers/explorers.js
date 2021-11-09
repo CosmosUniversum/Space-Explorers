@@ -8,6 +8,7 @@ function index(req, res) {
     res.render('explorers/index', {
       title: "Space Explorer's Explorers",
       explorers,
+      user: req.user ? req.user : null 
     })
   })
 }

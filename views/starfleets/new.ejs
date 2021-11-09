@@ -1,0 +1,15 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+
+<main>
+  <h1>This is where you will create your starfleet</h1><br>
+  <form action="/starfleets" method="POST">
+    <input type="text" name="name" placeholder="Name of your Starfleet">
+    <input type="text" name="logo" placeholder="URL to Logo here">
+    <button type="submit">Create Startfleet</button>
+  </form>
+
+</main>
+
+<%- include('../partials/footer') %>
