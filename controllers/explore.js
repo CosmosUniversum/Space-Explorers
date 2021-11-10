@@ -18,8 +18,10 @@ function create(req, res) {
   req.body.visitedBy = req.user.explorer._id
   Exploration.create(req.body)
   .then(exploration => {
+    console.log(req.params.id)
     Explorer.findById(req.params.id)
     .then(explorer => {
+      console.log(explorer)
       explorer.explorations.push(exploration._id)
       explorer.save()
       .then(() => {

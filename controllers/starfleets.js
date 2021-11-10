@@ -1,13 +1,15 @@
 import { Starfleet } from '../models/starfleet.js'
+import { Explorer } from '../models/explorer.js'
 
 function index(req, res) {
   Starfleet.find({})
+  .populate('commander')
   .then(starfleets => {
     console.log(starfleets)
     res.render('starfleets/index', {
       title: "Space Explorer's Starfleets",
-      starfleets,
-      user: req.user ? req.user : null 
+      user: req.user ? req.user : null, 
+      starfleets
     })
   })
 }
@@ -23,7 +25,12 @@ function newStarfleet(req, res) {
 function create(req, res) {
   req.body.commander = req.user.explorer._id
   Starfleet.create(req.body)
-  .then(() => {
+  .then(starfleet => {
+    Explorer.findById(req.user.explorer)
+    .then(explorer => {
+      explorer.starfleet = starfleet._id
+      explorer.save()
+    })
     res.redirect('/starfleets')
   })
 }

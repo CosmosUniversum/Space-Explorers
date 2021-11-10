@@ -2,18 +2,26 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1>This is where the starfleets page will be</h1><br>
   <a href="/starfleets/new">Create your own Starfleet</a>
   <ul>
     <% starfleets.forEach(starfleet => { %>
       <li>
-        <%= starfleet.name %><br>
-        <img src="<%= starfleet.logo %>">
-        <%= starfleet.commander %>
+        Starfleet: <%= starfleet.name %><br>
+          <% if (starfleet.logo) { %>
+            Logo: <img src="<%= starfleet.logo %>">
+          <% } %>
+        Commander: <%= starfleet.commander.name %><br>
         <% if (starfleet.explorations.length) { %>
-          <%= starfleet.explorations %>
+          Exploration<%= starfleet.explorations.length === 1 ? '' : 's'%>:
+          <% starfleet.explorations.forEach(exploration => { %>
+            <li>
+              <a href="/explore/<%= exploration._id %>">
+                <%= exploration.name %>
+              </a>
+            </li>
+          <% }) %>
         <% } else { %>
-        "no explorations done yet" 
+        no explorations done yet 
         <% } %> 
         <%= starfleet.crew %> 
       </li>
