@@ -13,10 +13,27 @@ function index(req, res) {
     })
   })
 }
+
 function create(req, res) {
+  req.body.visitedBy = req.user.explorer._id
   Exploration.create(req.body)
-  .then
+  .then(exploration => {
+    Explorer.findById(req.params.id)
+    .then(explorer => {
+      explorer.explorations.push(exploration._id)
+      explorer.save()
+      .then(() => {
+        res.redirect('/explore/index')
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/explore/index')
+    })
+  })
 }
+
+
 
 export {
   index,

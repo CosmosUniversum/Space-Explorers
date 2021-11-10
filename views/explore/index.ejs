@@ -11,7 +11,7 @@
 
 <main>
   <h1>This is the explore page</h1>
-  <form action="/explorations" method="POST">
+  <form action="/explore" method="POST">
   <input type="text" name="name" placeholder="Give your exploration a name">
   <h2><button type="submit">Add to explorations</button></h2>
   </form>
@@ -20,9 +20,13 @@
     <script type="text/javascript">
     var aladin = A.aladin('#aladin-lite-div', {
       survey: "P/DSS2/color", 
-      fov:60, 
-      showShareControl: true
+      fov:1.5,
+      target: 'NGC 2175',
+      showShareControl: true,
     });
+    
+    let coordinates = aladin.getRaDec()
+    let fov = aladin.getFov()
 </script>
 </main>
 
