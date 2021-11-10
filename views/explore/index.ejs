@@ -1,8 +1,21 @@
-<%- include('../partials/html-head') %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js" charset="utf-8"></script>
+    <title><%= title %></title>
 <%- include('../partials/nav') %>
 
 <main>
   <h1>This is the explore page</h1>
+  <div id="aladin-lite-div" style="width:400px;height:400px;"></div>
+    <script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:60});
+</script>
 </main>
 
 <%- include('../partials/footer') %>
