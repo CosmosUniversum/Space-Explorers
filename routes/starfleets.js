@@ -4,6 +4,7 @@ const router = Router()
 
 router.get('/', isLoggedIn, starfleetsCtrl.index)
 router.get('/new', isLoggedIn, starfleetsCtrl.new)
+router.post('/', isLoggedIn, starfleetsCtrl.create)
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();

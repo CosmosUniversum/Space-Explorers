@@ -12,14 +12,24 @@ function index(req, res) {
   })
 }
 
-function newStarfleet(req, res){
+function newStarfleet(req, res) {
   res.render('starfleets/new', {
     title: "Create Your Own Starfleet",
-    user: req.user ? req.user : null 
+    user: req.user ? req.user : null,
+    Starfleet
+  })
+}
+
+function create(req, res) {
+  req.body.commander = req.user.explorer._id
+  Starfleet.create(req.body)
+  .then(() => {
+    res.redirect('/starfleets')
   })
 }
 
 export {
   index,
-  newStarfleet as new
+  newStarfleet as new,
+  create
 }

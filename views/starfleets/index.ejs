@@ -4,6 +4,21 @@
 <main>
   <h1>This is where the starfleets page will be</h1><br>
   <a href="/starfleets/new">Create your own Starfleet</a>
+  <ul>
+    <% starfleets.forEach(starfleet => { %>
+      <li>
+        <%= starfleet.name %><br>
+        <img src="<%= starfleet.logo %>">
+        <%= starfleet.commander %>
+        <% if (starfleet.explorations.length) { %>
+          <%= starfleet.explorations %>
+        <% } else { %>
+        "no explorations done yet" 
+        <% } %> 
+        <%= starfleet.crew %> 
+      </li>
+    <% }) %>
+  </ul>
 </main>
 
 <%- include('../partials/footer') %>
