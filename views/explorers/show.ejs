@@ -3,10 +3,36 @@
 
 <main>
   <% if (user.explorer.equals(explorer._id)) { %>
-  <h2>This is your page</h2>
+  <h2>This is your Explorer Page.</h2>
   <% } else { %>
   <h2>This is not your page</h2>
   <% } %>
+  <div class="col">
+    <a class="text-decoration-none" href="/explorers/<%= explorer._id %>">
+      <div class="card shadow-sm">
+        <% if (explorer.avatar) { %>
+          <img
+            class="card-img-top"
+            src="<%= explorer.avatar %>"
+            alt="<%= explorer.name %>'s avatar"
+            width="100%"
+            height="170"
+          />
+        <% } else {%>
+          <img
+            class="card-img-top"
+            src="/images/icons/user.png"
+            alt="A placeholder avatar"
+            width="100%"
+            height="170"
+          />
+        <% } %>
+        <div class="card-body">
+          <p class="card-title fs-6 text-dark"><%= explorer.name %></p>
+        </div>
+      </div>
+    </a>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
