@@ -2,7 +2,9 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <a href="/starfleets/new">Create your own Starfleet</a>
+  <% if (!explorer.starfleet?.name) { %>
+    <a href="/starfleets/new">Create your own Starfleet</a>
+  <% } %>
   <ul>
     <% starfleets.forEach(starfleet => { %>
       <li>

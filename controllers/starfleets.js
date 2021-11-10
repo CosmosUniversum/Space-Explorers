@@ -5,11 +5,15 @@ function index(req, res) {
   Starfleet.find({})
   .populate('commander')
   .then(starfleets => {
-    console.log(starfleets)
-    res.render('starfleets/index', {
-      title: "Space Explorer's Starfleets",
-      user: req.user ? req.user : null, 
-      starfleets
+    Explorer.findById(req.user.explorer)
+    .populate('starfleet')
+    .then(explorer => {
+      res.render('starfleets/index', {
+        title: "Space Explorer's Starfleets",
+        user: req.user ? req.user : null, 
+        starfleets,
+        explorer
+      })
     })
   })
 }
