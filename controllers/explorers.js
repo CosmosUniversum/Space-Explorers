@@ -7,12 +7,28 @@ function index(req, res) {
     console.log(explorers)
     res.render('explorers/index', {
       title: "Space Explorer's Explorers",
-      explorers,
-      user: req.user ? req.user : null 
+      user: req.user ? req.user : null, 
+      explorers
     })
   })
 }
 
+function show(req, res) {
+  Explorer.findById(req.params.id)
+  .then(explorer => {
+    res.render('explorers/show', {
+      title: 'Explorer View',
+      user: req.user ? req.user : null, 
+      explorer
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/explorers/index')
+  })
+}
+
 export {
-  index
+  index,
+  show
 }

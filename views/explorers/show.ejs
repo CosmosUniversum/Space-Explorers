@@ -2,7 +2,11 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1>This is your profile page</h1>
+  <% if (user.explorer.equals(explorer._id)) { %>
+  <h2>This is your page</h2>
+  <% } else { %>
+  <h2>This is not your page</h2>
+  <% } %>
 </main>
 
 <%- include('../partials/footer') %>
