@@ -3,10 +3,9 @@ const Schema = mongoose.Schema
 
 const explorationSchema = new Schema({
   name: String,
-  coordinates: Number,
+  coordinates: [{type: Number}],
   visitedBy: [{type : Schema.Types.ObjectId, ref: "Explorer"}, {type: Schema.Types.ObjectId, ref: "Starfleet"}],
   observations: [{type: Schema.Types.ObjectId, ref: "Obervation"}],
-  crew: [{type: Schema.Types.ObjectId, ref: "Explorer"}]
 }, {
   timestamps: true
 })
