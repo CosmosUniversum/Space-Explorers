@@ -12,21 +12,29 @@
 <main>
   <h1>This is the explore page</h1>
   <form action="/explore" method="POST">
-  <input type="text" name="name" placeholder="Give your exploration a name">
-  <h2><button type="submit">Add to your explorations</button></h2>
+    <input id="coordinate1" type="text" name="coordinates[0]" hidden>
+    <input id="coordinate2" type="text" name="coordinates[1]" hidden>
+    <input type="text" name="name" placeholder="Exploration Name" required>
+  <h2><button id="addExploration"type="submit">Add to your explorations</button></h2>
   </form>
   <div id="aladin-lite-div" style="width:800px;height:800px;"></div>
     <script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
     <script type="text/javascript">
-    var aladin = A.aladin('#aladin-lite-div', {
-      survey: "P/DSS2/color", 
-      fov:1.5,
-      target: 'NGC 2175',
-      showShareControl: true,
-    });
-
-    let coordinates = aladin.getRaDec()
-    let fov = aladin.getFov()
+      var aladin = A.aladin('#aladin-lite-div', {
+        survey: "P/DSS2/color", 
+        fov:1.5,
+        target: 'NGC 2175',
+        showShareControl: true,
+      });
+      $("#addExploration").click(function() {
+        let coordinate1El = document.getElementById('coordinate1')
+        let coordinate2El = document.getElementById('coordinate2')
+        let coordinates = aladin.getRaDec()
+        coordinate1El.value = coordinates[0]
+        coordinate2El.value = coordinates[1]
+        console.log(coordinate1El.value)
+        console.log(coordinate2El.value)
+      })
 </script>
 </main>
 

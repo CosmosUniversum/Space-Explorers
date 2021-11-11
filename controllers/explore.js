@@ -3,6 +3,7 @@ import { Exploration } from "../models/exploration.js"
 import { Explorer } from "../models/explorer.js"
 import { Starfleet } from "../models/starfleet.js"
 
+
 function index(req, res) {
   Explorer.findById(req.user.explorer)
   .then(explorer => {
