@@ -2,8 +2,82 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h2><%= title %></h2>
-  
+  <h2><%= title %></h2><br>
+  <h3>Commander:</h3><br>
+  <div class="col">
+    <a class="text-decoration-none" href="/explorers/<%= starfleet.commander._id %>">
+      <div class="card shadow-sm">
+        <% if (starfleet.commander.avatar) { %>
+          <img
+            class="card-img-top"
+            src="<%= starfleet.commander.avatar %>"
+            alt="<%= starfleet.commander.name %>'s avatar"
+            width="100%"
+            height="170"
+          />
+        <% } else {%>
+          <img
+            class="card-img-top"
+            src="/images/icons/user.png"
+            alt="A placeholder avatar"
+            width="100%"
+            height="170"
+          />
+        <% } %>
+        <div class="card-body">
+          <p class="card-title fs-6 text-dark"><%= starfleet.commander.name %></p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div>
+    <h3>Crew:</h3><br>
+    <% starfleet.crew?.forEach(explorer => { %>
+      <div class="col">
+        <a class="text-decoration-none" href="/explorers/<%= starfleet.explorer?._id %>">
+          <div class="card shadow-sm">
+            <% if (starfleet.explorer?.avatar) { %>
+              <img
+                class="card-img-top"
+                src="<%= starfleet.explorer?.avatar %>"
+                alt="<%= starfleet.explorer?.name %>'s avatar"
+                width="100%"
+                height="170"
+              />
+            <% } else {%>
+              <img
+                class="card-img-top"
+                src="/images/icons/user.png"
+                alt="A placeholder avatar"
+                width="100%"
+                height="170"
+              />
+            <% } %>
+            <div class="card-body">
+              <p class="card-title fs-6 text-dark"><%= starfleet.explorer?.name %></p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div>
+    <% }) %>
+    <% if (starfleet.explorations?.length) { %>
+    </h2>
+      <h3><%= (user.starfleet?.equals(starfleet._id))? "Our" : "Their"  %> <%= (starfleet.explorations.length === 1)? "Exploration" : "Explorations" %>:</h3>
+        <h4>
+        <ul>
+          <% starfleet.explorations.forEach(exploration => { %>
+            <li><a href="/explorations/<%= exploration._id %>"><%= exploration.name %></a>:<br>
+              Coordinates: <%= exploration.coordinates[0] %>, <%= exploration.coordinates[1] %><br>
+            </li>
+          <% }) %>
+        </ul>
+      </h4>
+        <% } else { %>
+        <h3>No explorations have been done</h3>
+    <% } %>
+</div>
+</main>
 </main>
 
 <%- include('../partials/footer') %>

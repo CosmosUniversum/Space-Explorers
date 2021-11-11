@@ -1,5 +1,6 @@
 import { Explorer } from "../models/explorer.js"
 import { Exploration } from "../models/exploration.js"
+import { Starfleet } from "../models/starfleet.js"
 
 function index(req, res) {
   Explorer.find({})
@@ -18,10 +19,14 @@ function show(req, res) {
   .populate('explorations')
   .populate('starfleet')
   .then(explorer => {
-    res.render('explorers/show', {
-      title: 'Explorer View',
-      user: req.user ? req.user : null, 
-      explorer
+    Starfleet.findById(req.user.explorer.id)
+    .then(starfleet => {
+        res.render('explorers/show', {
+          title: 'Explorer View',
+          user: req.user ? req.user : null, 
+          explorer,
+          starfleet
+      })
     })
   })
   .catch(err => {

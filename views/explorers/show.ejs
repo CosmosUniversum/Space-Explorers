@@ -33,12 +33,15 @@
       </div>
     </a>
   </div>
+
   <div>
-    <h2> Starfleet: 
+    <h2> Starfleet: <%= explorer.starfleet?._id %>
       <% if (explorer.starfleet) { %>
         <%= (user.explorer.equals(explorer.starfleet?.commander))? "Commander of" : ""  %> <a href="/starfleets/<%= explorer.starfleet._id %>"><%= explorer.starfleet?.name %></a>
         <% } else { %>
-        <button>Add me to your Starfleet</button>
+          <form action="/starfleets/<%= user.explorer.starfleet?._id %>" method="POST">
+            <button type="submit">Add me to your Starfleet</button>
+          </form>
       <% } %>
       <% if (explorer.explorations.length) { %>
       </h2>

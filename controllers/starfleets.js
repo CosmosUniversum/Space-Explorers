@@ -17,16 +17,27 @@ function index(req, res) {
         explorer
       })
     })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/starfleets/index')
+    })
   })
 }
 
 function show(req, res) {
   Starfleet.findById(req.params.id)
+  .populate('commander')
+  .populate('explorations')
+  .populate('crew')
   .then(starfleet =>{
     res.render('starfleets/show', {
       title: `Starfleet: ${starfleet.name}`,
       user: req.user ? req.user : null, 
       starfleet
+    })
+    .catch(err => {
+    console.log(err)
+    res.redirect('/starfleets/index')
     })
   })
 }
@@ -50,11 +61,33 @@ function create(req, res) {
     })
     res.redirect('/starfleets')
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/starfleets/index')
+  })
+}
+
+function addToStarfleet(req, res) {
+  Explorer.findById(req.params.id)
+  .then(explorer =>{
+    Starfleet.findById(req.user.explorer.starfleet)
+    .then(starfleet => {
+      explorer.starfleet = req.user.explorer.starfleet._id
+      explorer.save()
+      console.log(starfleet)
+      res.redirect(`/starfleets/index`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/starfleets/index')
+  })
 }
 
 export {
   index,
   show,
   newStarfleet as new,
+  addToStarfleet,
   create
 }
