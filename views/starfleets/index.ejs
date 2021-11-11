@@ -8,7 +8,7 @@
   <ul>
     <% starfleets.forEach(starfleet => { %>
       <li>
-        Starfleet: <a href="/starfleet/<%= starfleet._id %> "><%= starfleet.name %></a><br>
+        Starfleet: <a href="/starfleets/<%= starfleet._id %> "><%= starfleet.name %></a><br>
           <% if (starfleet.logo) { %>
             Logo: <img src="<%= starfleet.logo %>">
           <% } %>

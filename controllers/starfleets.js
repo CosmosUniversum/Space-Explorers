@@ -20,6 +20,17 @@ function index(req, res) {
   })
 }
 
+function show(req, res) {
+  Starfleet.findById(req.params.id)
+  .then(starfleet =>{
+    res.render('starfleets/show', {
+      title: `Starfleet: ${starfleet.name}`,
+      user: req.user ? req.user : null, 
+      starfleet
+    })
+  })
+}
+
 function newStarfleet(req, res) {
   res.render('starfleets/new', {
     title: "Create Your Own Starfleet",
@@ -43,6 +54,7 @@ function create(req, res) {
 
 export {
   index,
+  show,
   newStarfleet as new,
   create
 }

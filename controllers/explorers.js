@@ -18,7 +18,6 @@ function show(req, res) {
   .populate('explorations')
   .populate('starfleet')
   .then(explorer => {
-
     res.render('explorers/show', {
       title: 'Explorer View',
       user: req.user ? req.user : null, 

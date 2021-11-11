@@ -3,6 +3,7 @@ import * as starfleetsCtrl from '../controllers/starfleets.js'
 const router = Router()
 
 router.get('/', isLoggedIn, starfleetsCtrl.index)
+router.get('/:id', isLoggedIn, starfleetsCtrl.show)
 router.get('/new', isLoggedIn, starfleetsCtrl.new)
 router.post('/', isLoggedIn, starfleetsCtrl.create)
 
