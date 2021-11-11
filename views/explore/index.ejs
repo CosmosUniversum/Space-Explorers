@@ -15,7 +15,7 @@
     <input id="coordinate1" type="text" name="coordinates[0]" hidden>
     <input id="coordinate2" type="text" name="coordinates[1]" hidden>
     <input id="fov" type="text" name="fov" hidden>
-    <input type="text" name="name" placeholder="Exploration Name" required>
+    <input id="name" type="text" name="name" placeholder="Exploration Name" required>
   <h2><button id="addExploration"type="submit">Add to your explorations</button></h2>
   </form>
   <div id="aladin-lite-div" style="width:800px;height:800px;"></div>
@@ -36,8 +36,10 @@
         coordinate1El.value = coordinates[0]
         coordinate2El.value = coordinates[1]
         fovEl.value = fov[0]
-        console.log(fovEl.value)
-      })
+        setTimeout(() => {
+          $('#name').val("successfully added!"),1000
+          })
+        })
 </script>
 </main>
 

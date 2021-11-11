@@ -33,7 +33,6 @@ function create(req, res) {
             exploration.save()
           })
         }
-        res.redirect('/explore')
       })
     })
     .catch(err => {
