@@ -23,13 +23,15 @@ function create(req, res) {
       explorer.explorations.push(exploration._id)
       explorer.save()
       .then(() => {
-        Starfleet.findById(explorer.starfleet._id)
-        .then(starfleet =>{
-          starfleet.explorations.push(exploration._id)
-          starfleet.save()
-          exploration.visitedBy.push(starfleet._id)
-          exploration.save()
-        })
+        if(explorer.starfleet) {
+          Starfleet.findById(explorer.starfleet._id)
+          .then(starfleet =>{
+            starfleet.explorations.push(exploration._id)
+            starfleet.save()
+            exploration.visitedBy.push(starfleet._id)
+            exploration.save()
+          })
+        }
         res.redirect('/explore')
       })
     })
