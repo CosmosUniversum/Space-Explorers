@@ -1,26 +1,26 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main>
+<main><h3>
   <% if (!explorer.starfleet?.name) { %>
     <a href="/starfleets/new">Create your own Starfleet</a>
   <% } %>
   <ul>
     <% starfleets.forEach(starfleet => { %>
       <li>
-        Starfleet: <%= starfleet.name %><br>
+        Starfleet: <a href="/starfleet/<%= starfleet._id %> "><%= starfleet.name %></a><br>
           <% if (starfleet.logo) { %>
             Logo: <img src="<%= starfleet.logo %>">
           <% } %>
-        Commander: <%= starfleet.commander.name%><br>
+        Commander: <a href="/explorers/<%= starfleet.commander._id %>"><%= starfleet.commander.name%></a><br>
         <% if (starfleet.explorations.length) { %>
           Exploration<%= starfleet.explorations.length === 1 ? '' : 's'%>:
           <% starfleet.explorations.forEach(exploration => { %>
-            <li>
-              <a href="/explore/<%= exploration._id %>">
+            <ol>
+              - <a href="/explore/<%= exploration._id %>">
                 <%= exploration.name %>
               </a>
-            </li>
+            </ol>
           <% }) %>
         <% } else { %>
         no explorations done yet 
@@ -29,6 +29,7 @@
       </li>
     <% }) %>
   </ul>
+</h3>
 </main>
 
 <%- include('../partials/footer') %>

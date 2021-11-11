@@ -15,7 +15,10 @@ function index(req, res) {
 
 function show(req, res) {
   Explorer.findById(req.params.id)
+  .populate('explorations')
+  .populate('starfleet')
   .then(explorer => {
+
     res.render('explorers/show', {
       title: 'Explorer View',
       user: req.user ? req.user : null, 

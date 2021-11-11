@@ -33,6 +33,27 @@
       </div>
     </a>
   </div>
+  <div>
+    <h2> Starfleet: 
+      <% if (explorer.starfleet) { %>
+        <%= (user.explorer.equals(explorer.starfleet?.commander))? "Commander of" : ""  %> <%= explorer.starfleet?.name %>
+        <% } else { %>
+        <button>Add me to your Starfleet</button>
+      <% } %>
+      <% if (explorer.explorations.length) { %>
+      </h2>
+        <h3><%= (user.explorer.equals(explorer._id))? "My" : "Their"  %> <%= (explorer.explorations.length === 1)? "Exploration" : "Explorations" %>:</h3>
+          <ul>
+            <% explorer.explorations.forEach(exploration => { %>
+              <li><%= exploration.name %>:<br>
+                Coordinates: <%= exploration.coordinates[0] %>, <%= exploration.coordinates[1] %><br>
+              </li>
+            <% }) %>
+          </ul>
+          <% } else { %>
+          <h3>No explorations have been done</h3>
+      <% } %>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
