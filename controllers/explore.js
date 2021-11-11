@@ -18,19 +18,24 @@ function create(req, res) {
   req.body.visitedBy = req.user.explorer._id
   Exploration.create(req.body)
   .then(exploration => {
-    console.log(req.params.id)
-    Explorer.findById(req.params.id)
+    Explorer.findById(req.user.explorer)
     .then(explorer => {
-      console.log(explorer)
       explorer.explorations.push(exploration._id)
       explorer.save()
       .then(() => {
-        res.redirect('/explore/index')
+        Starfleet.findById(explorer.starfleet._id)
+        .then(starfleet =>{
+          starfleet.explorations.push(exploration._id)
+          starfleet.save()
+          exploration.visitedBy.push(starfleet._id)
+          exploration.save()
+        })
+        res.redirect('/explore')
       })
     })
     .catch(err => {
       console.log(err)
-      res.redirect('/explore/index')
+      res.redirect('/explore')
     })
   })
 }

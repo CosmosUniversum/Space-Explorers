@@ -12,7 +12,7 @@
           <% if (starfleet.logo) { %>
             Logo: <img src="<%= starfleet.logo %>">
           <% } %>
-        Commander: <%= starfleet.commander.name %><br>
+        Commander: <%= starfleet.commander.name%><br>
         <% if (starfleet.explorations.length) { %>
           Exploration<%= starfleet.explorations.length === 1 ? '' : 's'%>:
           <% starfleet.explorations.forEach(exploration => { %>
