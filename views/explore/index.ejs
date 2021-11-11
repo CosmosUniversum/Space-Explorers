@@ -14,6 +14,7 @@
   <form action="/explore" method="POST">
     <input id="coordinate1" type="text" name="coordinates[0]" hidden>
     <input id="coordinate2" type="text" name="coordinates[1]" hidden>
+    <input id="fov" type="text" name="fov" hidden>
     <input type="text" name="name" placeholder="Exploration Name" required>
   <h2><button id="addExploration"type="submit">Add to your explorations</button></h2>
   </form>
@@ -29,11 +30,13 @@
       $("#addExploration").click(function() {
         let coordinate1El = document.getElementById('coordinate1')
         let coordinate2El = document.getElementById('coordinate2')
+        let fovEl = document.getElementById('fov')
         let coordinates = aladin.getRaDec()
+        let fov = aladin.getFov()
         coordinate1El.value = coordinates[0]
         coordinate2El.value = coordinates[1]
-        console.log(coordinate1El.value)
-        console.log(coordinate2El.value)
+        fovEl.value = fov[0]
+        console.log(fovEl.value)
       })
 </script>
 </main>
