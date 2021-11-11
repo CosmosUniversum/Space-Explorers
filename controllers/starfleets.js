@@ -1,9 +1,11 @@
 import { Starfleet } from '../models/starfleet.js'
 import { Explorer } from '../models/explorer.js'
+import { Exploration } from '../models/exploration.js'
 
 function index(req, res) {
   Starfleet.find({})
   .populate('commander')
+  .populate('explorations')
   .then(starfleets => {
     Explorer.findById(req.user.explorer)
     .populate('starfleet')
